@@ -193,6 +193,7 @@ button {
       border-radius: 8px;
       height: 32px;
       width: 72px;
+      color: var(--purple-light-1);
   }
 
   .trendingPreview-movieList{

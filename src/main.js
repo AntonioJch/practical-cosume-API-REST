@@ -1,8 +1,19 @@
-async function getTrendingMoviesPreview() {
-    const answer = await fetch(`${URL_API}trending/movie/day?${API_KEY}`);
-    const data = await answer.json();
 
+
+const api = axios.create({
+    baseURL: URL_API,
+    headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+    },
+    params: {
+        'api_key': API_KEY,
+    }
+})
+
+async function getTrendingMoviesPreview() {
+    const { data } = await api(`trending/movie/day`);
     const movies = data.results;
+
     console.log({ data, movies });
     movies.forEach(movie => {
         const trendingPreviewMovieListContainer = document.querySelector('#trendingPreview .trendingPreview-movieList');
@@ -24,10 +35,9 @@ async function getTrendingMoviesPreview() {
 
 
 async function getCategoriesPreview() {
-    const answer = await fetch(`${URL_API}genre/movie/list?${API_KEY}`);
-    const data = await answer.json();
-
+    const { data } = await api(`genre/movie/list`);
     const categories = data.genres;
+
     console.log('categoties ', categories)
     categories.forEach(category => {
         const categoriesPreviewContainer = document.querySelector('#categoriesPreview .categoriesPreview-list')

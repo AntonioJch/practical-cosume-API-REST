@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/AntonioJch/practical-cosume-API-REST/issues"
   },
-  "homepage": "https://github.com/AntonioJch/practical-cosume-API-REST#readme"
+  "homepage": "https://github.com/AntonioJch/practical-cosume-API-REST#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
 }

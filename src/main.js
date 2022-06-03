@@ -33,7 +33,7 @@ function createMovies(movies, container) {
 }
 
 function createCategories(categories, container) {
-
+    container.innerHTML = '';
     categories.forEach(category => {
 
         const categoryContainer = document.createElement('div');
@@ -90,4 +90,25 @@ async function getMoviesByCategory(id) {
     console.log({ data, movies });
 
     createMovies(movies, genericSection);
+}
+
+async function getMoviesBySearch(query) {
+    const { data } = await api('search/movie', {
+        params: {
+            query,
+        },
+    });
+    const movies = data.results;
+    createMovies(movies, genericSection);
+}
+
+
+async function getTrendingMovies() {
+    const { data } = await api(`trending/movie/day`);
+    const movies = data.results;
+
+    console.log({ data, movies });
+
+    createMovies(movies, genericSection)
+
 }

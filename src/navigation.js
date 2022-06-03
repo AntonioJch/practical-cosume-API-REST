@@ -110,6 +110,9 @@ function moviePage() {
     genericSection.classList.add('inactive');
     movieDetailSection.classList.remove('inactive');
 
+    const [_, IdMovie] = location.hash.split('=');
+
+    getMovieById(IdMovie);
 }
 
 function categoryPage() {

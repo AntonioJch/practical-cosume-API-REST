@@ -114,6 +114,7 @@ button {
     justify-content: space-between;
     position: relative;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 /* Header */
@@ -326,18 +327,24 @@ button {
     margin: 0 0 24px 0;
   }
 
-  .relatedMovies-tile{
-      margin-bottom: 16px;
+  .relatedMovies-title{
+      
+    
   }
 
+  .relatedMovies-title2{
+    margin-bottom: 16px;
+  
+}
+
   .relatedMovies-container  {
-    position: absolute;
+    
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
     width: calc(100vw - 24px);
     padding-bottom: 16px;
-
+    
   }
 
   .relatedMovies-scrollContainer, .movie-container {

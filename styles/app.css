@@ -90,6 +90,8 @@ button {
 
 .header-container, .trendingPreview-header, .categoriesPreview-container{
     padding: 0 24px;
+    
+   
 }
 
 .trendingPreview-contairner, .categoriesPreview-container, footer{
@@ -136,6 +138,7 @@ button {
 
 .movie-img{
     border-radius: 8px;
+    min-height: 175px;
 }
 
 .categoriesPreview-list, .categories-list{

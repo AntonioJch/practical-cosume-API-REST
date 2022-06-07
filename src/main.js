@@ -12,6 +12,20 @@ const api = axios.create({
 
 
 // Utils
+
+const lazyLoading = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            const target = entry.target;
+            const url = target.getAttribute('data-src')
+            /* console.log(entry.target) */
+            entry.target.setAttribute('src', url)
+            lazyLoading.unobserve(target);
+        }
+
+        /* console.log({ entry }) */
+    })
+})
 function createMovies(movies, container) {
     container.innerHTML = '';
 
@@ -24,12 +38,22 @@ function createMovies(movies, container) {
         })
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
+        /* movieImg.addEventListener('error', console.log); */
         movieImg.setAttribute('alt', movie.title);
-        movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path);
+        movieImg.setAttribute('data-src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path);
 
+        movieImg.addEventListener('error', () => {
+            movieImg.setAttribute(
+                'src',
+                'https://static.platzi.com/static/images/error/img404.png',
+            );
+        })
 
+        lazyLoading.observe(movieImg);
         movieContainer.appendChild(movieImg);
         container.appendChild(movieContainer);
+
+        // lazyLoading(movieImg);
 
     });
 }

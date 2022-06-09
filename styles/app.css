@@ -342,6 +342,23 @@ button {
     width: 140px;
 }
 
+
+.boton-load{
+  width: 100%;
+  text-align: center;
+  color: var(--purple-light-2);
+  
+}
+
+
+.boton-load button{
+ border-radius: 1px solid var(--purple-medium-1);
+ border: 1px var(--purple-light-1); 
+ font-size: 1.6rem;
+ padding: 10px;
+ border-radius: 8px;
+ margin-top: 10px;
+}
 /*Movie Detail*/
 
 .movieDetail-container {

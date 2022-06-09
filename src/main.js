@@ -26,8 +26,9 @@ const lazyLoading = new IntersectionObserver((entries) => {
         /* console.log({ entry }) */
     })
 })
-function createMovies(movies, container) {
-    container.innerHTML = '';
+function createMovies(movies, container, clean = true) {
+
+    if (clean) { container.innerHTML = ''; };
 
     movies.forEach(movie => {
 
@@ -54,6 +55,17 @@ function createMovies(movies, container) {
         container.appendChild(movieContainer);
 
         // lazyLoading(movieImg);
+
+    });
+    const containerButton = document.querySelector('.boton-load');
+    const btnReloadMore = document.createElement('button');
+    btnReloadMore.innerText = 'Load More...';
+    containerButton.appendChild(btnReloadMore);
+    btnReloadMore.addEventListener('click', () => {
+
+        btnReloadMore.remove();
+
+        getPaginatedTrendingMovies();
 
     });
 }
@@ -134,11 +146,43 @@ async function getTrendingMovies() {
     const movies = data.results;
 
     console.log({ data, movies });
+    /*     const btnReloadMore = document.createElement('button');
+        btnReloadMore.innerText = 'load';
+        btnReloadMore.addEventListener('click', getPaginatedTrendingMovies);
+        genericSection.appendChild(btnReloadMore); */
 
-    createMovies(movies, genericSection)
+    createMovies(movies, genericSection, clean = true)
+
 
 }
 
+let page = 1
+
+async function getPaginatedTrendingMovies() {
+    page++;
+    console.log('paginacion: ' + page)
+    const { data } = await api(`trending/movie/day`, {
+        params: {
+            page,
+        },
+    });
+    const movies = data.results;
+
+
+
+    createMovies(movies, genericSection, clean = false);
+
+    /*     const btnReloadMore = document.createElement('button');
+        btnReloadMore.innerText = 'load';
+        genericSection.appendChild(btnReloadMore);
+        btnReloadMore.addEventListener('click', () => {
+            const deletebtn = document.querySelector('button');
+            deletebtn.remove();
+            getPaginatedTrendingMovies();
+    
+        }); */
+
+}
 
 async function getMovieById(id) {
     const { data: movie } = await api(`movie/${id}`);

@@ -38,7 +38,7 @@ function createMovies(movies, container, clean = true) {
         movieContainer.addEventListener('click', () => {
             location.hash = '#movie=' + movie.id
         })
-        headerCategorytitle.innerText = `${movie.title}`;
+        /* headerCategorytitle.innerText = `${movie.title}`; */
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         /* movieImg.addEventListener('error', console.log); */
@@ -169,18 +169,27 @@ async function getTrendingMovies() {
 let page = 1
 
 async function getPaginatedTrendingMovies() {
-    page++;
-    console.log('paginacion: ' + page)
-    const { data } = await api(`trending/movie/day`, {
-        params: {
-            page,
-        },
-    });
-    const movies = data.results;
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+
+    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
+
+    if (scrollIsBottom) {
+
+        page++;
+        console.log('paginacion: ' + page)
+        const { data } = await api(`trending/movie/day`, {
+            params: {
+                page,
+            },
+        });
+
+        const movies = data.results;
 
 
 
-    createMovies(movies, genericSection, clean = false);
+        createMovies(movies, genericSection, clean = false);
+    };
+
 
     /*     const btnReloadMore = document.createElement('button');
         btnReloadMore.innerText = 'load';

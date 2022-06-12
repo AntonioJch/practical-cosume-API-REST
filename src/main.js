@@ -30,6 +30,7 @@ function createMovies(movies, container, clean = true) {
 
     if (clean) { container.innerHTML = ''; };
 
+
     movies.forEach(movie => {
 
         const movieContainer = document.createElement('div');
@@ -37,6 +38,7 @@ function createMovies(movies, container, clean = true) {
         movieContainer.addEventListener('click', () => {
             location.hash = '#movie=' + movie.id
         })
+        headerCategorytitle.innerText = `${movie.title}`;
         const movieImg = document.createElement('img');
         movieImg.classList.add('movie-img');
         /* movieImg.addEventListener('error', console.log); */
@@ -59,15 +61,22 @@ function createMovies(movies, container, clean = true) {
     });
     const containerButton = document.querySelector('.boton-load');
     const btnReloadMore = document.createElement('button');
+    btnReloadMore.classList.add('active')
     btnReloadMore.innerText = 'Load More...';
-    containerButton.appendChild(btnReloadMore);
-    btnReloadMore.addEventListener('click', () => {
 
-        btnReloadMore.remove();
+    if (!document.body.querySelector('.active')) {
+        containerButton.appendChild(btnReloadMore);
+        btnReloadMore.addEventListener('click', () => {
 
-        getPaginatedTrendingMovies();
+            btnReloadMore.remove();
 
-    });
+            getPaginatedTrendingMovies();
+
+        });
+    } else {
+        console.log('button ready')
+    }
+
 }
 
 function createCategories(categories, container) {
@@ -76,7 +85,7 @@ function createCategories(categories, container) {
 
         const categoryContainer = document.createElement('div');
         categoryContainer.classList.add('category-container')
-
+        /* headerCategorytitle.innerText = `${category.name}`; */
         const categoryTitle = document.createElement('h3');
         categoryTitle.classList.add('category-title');
         categoryTitle.setAttribute('id', 'id' + category.id)
@@ -137,6 +146,7 @@ async function getMoviesBySearch(query) {
         },
     });
     const movies = data.results;
+
     createMovies(movies, genericSection);
 }
 

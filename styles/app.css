@@ -88,22 +88,23 @@ button {
 
 /* Shared*/
 
-.header-container, .trendingPreview-header, .categoriesPreview-container{
+.header-container, .trendingPreview-header, .categoriesPreview-container, .like-container-title{
     padding: 0 24px;
     
    
 }
 
-.trendingPreview-contairner, .categoriesPreview-container, footer{
+.trendingPreview-contairner, .categoriesPreview-container, .like-container, footer{
     margin-top: 48px;
 }
 
-.trendingPreview-header, .categoriesPreview-title {
+.trendingPreview-header, .categoriesPreview-title, .like-container-title {
     margin-bottom: 2.4rem;
 }
 
 .movie-container{
     cursor: pointer;
+    position: relative;
 }
 .movie-container--loading{
   background: var(--purple-light-2);
@@ -139,6 +140,30 @@ button {
 .movie-img{
     border-radius: 8px;
     min-height: 175px;
+}
+
+.movie-btn{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  padding: 0;
+  margin: 0;
+  
+}
+.movie-btn::before{
+  content: '🤍';
+}
+
+.movie-btn--liked{
+  background-color: var(--purple-light-2);
+  box-shadow:  0px 0px 10px 2px var(--purple-dark-1);
+}
+
+.movie-btn--liked::before{
+  content: '💜';
 }
 
 .categoriesPreview-list, .categories-list{
@@ -235,7 +260,8 @@ button {
     
   }  */
 
-    .trendingPreview-header {
+    .trendingPreview-header,
+    .like-container-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -248,7 +274,8 @@ button {
       color: var(--purple-light-1);
   }
 
-  .trendingPreview-movieList{
+  .trendingPreview-movieList,
+  .like-movieList {
       overflow-x: scroll;
       overflow-y: hidden;
       white-space: nowrap;
@@ -258,12 +285,14 @@ button {
       
   }
 
-  .trendingPreview-movieList .movie-container{
+  .trendingPreview-movieList .movie-container,
+  .like-movieList .movie-container{
       display: inline-block;
       margin-right: 8px;
   }
 
-  .trendingPreview-movieList .movie-container .movie-img{
+  .trendingPreview-movieList .movie-container .movie-img,
+  .like-movieList .movie-container .movie-img {
       width: 150px;
       min-height: 150px;
       max-width: 150px;
@@ -326,20 +355,25 @@ button {
     display: flex;
     width: 100%;
     min-width: 320px;
-    max-width: 460px;
+    max-width: 500px;
     flex-wrap: wrap;
     padding: 20px 0;
-    margin: 0 auto;
-    
+    justify-content: center;
+    margin: 0 auto; 
 
 }
 
  .genericList-container  .movie-container{
-    margin: 0 auto;
+   margin: 8px auto; 
 } 
 
 .genericList-container .movie-img {
-    width: 140px;
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
 }
 
 

@@ -1,5 +1,5 @@
 
-
+//Data
 const api = axios.create({
     baseURL: URL_API,
     headers: {
@@ -8,8 +8,40 @@ const api = axios.create({
     params: {
         'api_key': API_KEY,
     }
-})
+});
 
+function likedMoviesList() {
+
+    const item = JSON.parse(localStorage.getItem('liked_movies'));
+    let movies;
+
+    if (item) {
+        movies = item;
+    } else {
+        movies = {};
+    }
+
+    return movies;
+};
+
+function likeMovie(movie) {
+    const likedMovies = likedMoviesList();
+    console.log(likedMovies)
+
+    if (likedMovies[movie.id]) {
+
+        /* console.log('The movie was already in LS, we should delete it'); */
+        likedMovies[movie.id] = undefined;
+
+    } else {
+
+        /* console.log('The movie was not in LS, we should add it'); */
+        likedMovies[movie.id] = movie;
+
+    };
+
+    localStorage.setItem('liked_movies', JSON.stringify(likedMovies));
+};
 
 // Utils
 
@@ -25,7 +57,7 @@ const lazyLoading = new IntersectionObserver((entries) => {
 
         /* console.log({ entry }) */
     })
-})
+});
 function createMovies(movies, container, clean = true) {
 
     if (clean) { container.innerHTML = ''; };
@@ -55,6 +87,7 @@ function createMovies(movies, container, clean = true) {
         movieBtn.classList.add('movie-btn');
         movieBtn.addEventListener('click', () => {
             movieBtn.classList.toggle('movie-btn--liked');
+            likeMovie(movie);
         });
 
         lazyLoading.observe(movieImg);
@@ -107,7 +140,7 @@ function createCategories(categories, container) {
 
     })
 
-}
+};
 // Llamados a la API
 async function getTrendingMoviesPreview() {
     const { data } = await api(`trending/movie/day`);
@@ -117,7 +150,7 @@ async function getTrendingMoviesPreview() {
 
     createMovies(movies, trendingMoviesPreviewList)
 
-}
+};
 
 
 async function getCategoriesPreview() {
@@ -129,7 +162,7 @@ async function getCategoriesPreview() {
 
 
 
-}
+};
 
 async function getMoviesByCategory(id) {
 
@@ -145,7 +178,7 @@ async function getMoviesByCategory(id) {
     console.log({ data, movies });
 
     createMovies(movies, genericSection);
-}
+};
 
 function getPaginatedMoviesByCategory(id) {
 
@@ -173,7 +206,7 @@ function getPaginatedMoviesByCategory(id) {
 
     }
 
-}
+};
 
 async function getMoviesBySearch(query) {
     const { data } = await api('search/movie', {
@@ -185,7 +218,7 @@ async function getMoviesBySearch(query) {
     maxPage = data.total_pages;
     console.log(maxPage)
     createMovies(movies, genericSection);
-}
+};
 
 function getPaginatedMoviesBySearch(query) {
 
@@ -213,7 +246,7 @@ function getPaginatedMoviesBySearch(query) {
 
     }
 
-}
+};
 
 async function getTrendingMovies() {
     const { data } = await api(`trending/movie/day`);
@@ -224,7 +257,7 @@ async function getTrendingMovies() {
     createMovies(movies, genericSection, clean = true)
 
 
-}
+};
 
 
 
@@ -249,7 +282,7 @@ async function getPaginatedTrendingMovies() {
 
         createMovies(movies, genericSection, clean = false);
     };
-}
+};
 
 async function getMovieById(id) {
     const { data: movie } = await api(`movie/${id}`);

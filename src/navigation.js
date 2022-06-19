@@ -20,6 +20,7 @@ window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
 window.addEventListener('scroll', infiniteScroll, false);
 
+
 function navigator() {
     console.log(location);
 
@@ -61,6 +62,7 @@ function homePage() {
     searchForm.classList.remove('inactive');
 
     trendingPreviewSection.classList.remove('inactive');
+    LikedMoviesSection.classList.remove('inactive');
     categoriesPreviewSection.classList.remove('inactive');
     genericSection.classList.add('inactive');
     movieDetailSection.classList.add('inactive');
@@ -68,6 +70,7 @@ function homePage() {
 
     getCategoriesPreview()
     getTrendingMoviesPreview();
+    getLikeMovies();
 }
 
 function trendsPage() {
@@ -83,6 +86,7 @@ function trendsPage() {
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
+    LikedMoviesSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
 
@@ -107,6 +111,7 @@ function searchPage() {
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
+    LikedMoviesSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
     buttonLoadMore.classList.add('inactive');
@@ -132,6 +137,7 @@ function moviePage() {
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
+    LikedMoviesSection.classList.add('inactive');
     genericSection.classList.add('inactive');
     movieDetailSection.classList.remove('inactive');
 
@@ -154,6 +160,7 @@ function categoryPage() {
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
+    LikedMoviesSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
     buttonLoadMore.classList.remove('inactive');

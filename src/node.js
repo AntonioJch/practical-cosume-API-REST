@@ -5,6 +5,8 @@ const trendingPreviewSection = document.querySelector('#trendingPreview');
 const categoriesPreviewSection = document.querySelector('#categoriesPreview');
 const genericSection = document.querySelector('#genericList');
 const movieDetailSection = document.querySelector('#movieDetail')
+const LikedMoviesSection = document.querySelector('#liked')
+
 
 //Lists & Containers
 
@@ -13,6 +15,7 @@ const trendingMoviesPreviewList = document.querySelector('.trendingPreview-movie
 const categoriesPreviewList = document.querySelector('.categoriesPreview-list');
 const movieDetailCategoriesList = document.querySelector('#movieDetail .categories-list');
 const relatedMoviesContainer = document.querySelector('.relatedMovies-scrollContainer');
+const likedMovieArticle = document.querySelector('.like-movieList');
 
 // Elements
 

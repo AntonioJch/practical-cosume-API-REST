@@ -30,7 +30,7 @@ function likedMoviesList() {
 
 function likeMovie(movie) {
     const likedMovies = likedMoviesList();
-    console.log(likedMovies)
+    /* console.log(likedMovies) */
 
     if (likedMovies[movie.id]) {
 
@@ -282,7 +282,7 @@ async function getPaginatedTrendingMovies() {
     if (scrollIsBottom && pageIsNotMax) {
 
         page++;
-        console.log('paginacion: ' + page)
+        /* console.log('paginacion: ' + page) */
         const { data } = await api(`trending/movie/day`, {
             params: {
                 page,

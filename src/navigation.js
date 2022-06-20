@@ -22,7 +22,7 @@ window.addEventListener('scroll', infiniteScroll, false);
 
 
 function navigation() {
-    console.log(location);
+    /* console.log(location); */
 
     if (infiniteScroll) {
         window.removeEventListener('scroll', infiniteScroll, { passive: false });
@@ -119,7 +119,7 @@ function searchPage() {
 
     const [_, query] = location.hash.split('=')
     getMoviesBySearch(query);
-    console.log('this is query ' + query)
+    /* console.log('this is query ' + query) */
 
     infiniteScroll = getPaginatedMoviesBySearch(query);
 }

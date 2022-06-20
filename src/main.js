@@ -157,7 +157,7 @@ async function getTrendingMoviesPreview() {
     const { data } = await api(`trending/movie/day`);
     const movies = data.results;
 
-    console.log({ data, movies });
+    /* console.log({ data, movies }); */
 
     createMovies(movies, trendingMoviesPreviewList)
 
@@ -167,7 +167,7 @@ async function getTrendingMoviesPreview() {
 async function getCategoriesPreview() {
     const { data } = await api(`genre/movie/list`);
     const categories = data.genres;
-    console.log('categoties ', categories)
+    /*  console.log('categoties ', categories) */
 
     createCategories(categories, categoriesPreviewList);
 
@@ -184,9 +184,9 @@ async function getMoviesByCategory(id) {
     });
     const movies = data.results;
     maxPage = data.total_pages;
-    console.log(maxPage)
-    console.log('with_genres')
-    console.log({ data, movies });
+    /*     console.log(maxPage)
+        console.log('with_genres')
+        console.log({ data, movies }); */
 
     createMovies(movies, genericSection);
 };
@@ -198,12 +198,12 @@ function getPaginatedMoviesByCategory(id) {
 
         const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
         const pageIsNotMax = page < maxPage;
-        console.log(maxPage + ' ' + pageIsNotMax)
+        /* console.log(maxPage + ' ' + pageIsNotMax) */
 
         if (scrollIsBottom && pageIsNotMax) {
 
             page++;
-            console.log('paginacion: ' + page)
+            /* console.log('paginacion: ' + page) */
             const { data } = await api(`discover/movie`, {
                 params: {
                     with_genres: id,
@@ -227,7 +227,7 @@ async function getMoviesBySearch(query) {
     });
     const movies = data.results;
     maxPage = data.total_pages;
-    console.log(maxPage)
+    /* console.log(maxPage) */
     createMovies(movies, genericSection);
 };
 
@@ -238,12 +238,12 @@ function getPaginatedMoviesBySearch(query) {
 
         const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
         const pageIsNotMax = page < maxPage;
-        console.log('500' + pageIsNotMax)
+        /* console.log('500' + pageIsNotMax) */
 
         if (scrollIsBottom && pageIsNotMax) {
 
             page++;
-            console.log('paginacion: ' + page)
+            /*  console.log('paginacion: ' + page )*/
             const { data } = await api('search/movie', {
                 params: {
                     query,
@@ -277,7 +277,7 @@ async function getPaginatedTrendingMovies() {
 
     const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15)
     const pageIsNotMax = page < maxPage;
-    console.log('100' + pageIsNotMax)
+    /* console.log('100' + pageIsNotMax) */
 
     if (scrollIsBottom && pageIsNotMax) {
 
@@ -299,7 +299,7 @@ async function getMovieById(id) {
     const { data: movie } = await api(`movie/${id}`);
 
     const movieImageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-    console.log(movieImageUrl);
+    /* console.log(movieImageUrl); */
     headerSection.style.background = ` 
     linear-gradient(
         180deg,
@@ -328,7 +328,7 @@ function getLikeMovies() {
     const likedMovies = likedMoviesList();
 
     const moviesArray = Object.values(likedMovies);
-    console.log('these are: ', moviesArray);
+    /* console.log('these are: ', moviesArray); */
 
     createMovies(moviesArray, likedMovieArticle, true);
 }

@@ -1,3 +1,6 @@
+//Languages
+const lang = window.navigator.language.split('-')[0]
+
 
 //Data
 const api = axios.create({
@@ -7,6 +10,7 @@ const api = axios.create({
     },
     params: {
         'api_key': API_KEY,
+        'language': lang
     }
 });
 
@@ -324,7 +328,7 @@ function getLikeMovies() {
     const likedMovies = likedMoviesList();
 
     const moviesArray = Object.values(likedMovies);
-    console.log(moviesArray);
+    console.log('these are: ', moviesArray);
 
     createMovies(moviesArray, likedMovieArticle, true);
 }

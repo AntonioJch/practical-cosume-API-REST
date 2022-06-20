@@ -16,12 +16,12 @@ arrowBtn.addEventListener('click', () => {
     history.back();
 });
 
-window.addEventListener('DOMContentLoaded', navigator, false);
-window.addEventListener('hashchange', navigator, false);
+window.addEventListener('DOMContentLoaded', navigation, false);
+window.addEventListener('hashchange', navigation, false);
 window.addEventListener('scroll', infiniteScroll, false);
 
 
-function navigator() {
+function navigation() {
     console.log(location);
 
     if (infiniteScroll) {
